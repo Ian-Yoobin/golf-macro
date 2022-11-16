@@ -5,12 +5,12 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By 
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+#import pyautogui
 
 root =Tk()
 root.geometry("600x400")
 root.title("Auto Booking")
 root.resizable(False,False)
-
 
 
 def btn1press():
@@ -28,14 +28,21 @@ def start():
     driver = webdriver.Chrome()
     url='https://city-of-burnaby-golf.book.teeitup.com/login'
     driver.get(url)
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument("--disable-popup-blocking")
     driver.maximize_window()
     action =ActionChains(driver)
     time.sleep(1)
+    #driver.implicitly_wait(time_to_wait=5)
     action.send_keys(id).perform()
 
     driver.find_element(By.ID,'txtPassword').click()
     action.send_keys(pw).perform()
+    
+    driver.find_element(By.CLASS_NAME,'MuiButton-label').click()
+    driver.implicitly_wait(time_to_wait=5)
 
+    driver.find_element(By.CLASS_NAME,'jss189').click()
     time.sleep(100)  
 
 ent=Entry(root)
@@ -57,10 +64,16 @@ btn2.config(command=btn2press)
 btn2.pack()
 
 btn3=Button(root)
-btn3.config(text="Start")
+btn3.config(text="READY")
 btn3.config(width=10)
 btn3.config(command=start)
 btn3.pack()
 
 root.mainloop()
+
+
+
+
+
+
 
