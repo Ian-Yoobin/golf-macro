@@ -12,8 +12,6 @@ root.title("Auto Booking")
 root.resizable(False,False)
 
 
-global pw
-
 
 def btn1press():
     btn.config(text=ent.get())
